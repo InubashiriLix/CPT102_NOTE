@@ -17,9 +17,14 @@ public class Stack implements AbsStack {
 ## DEPENDENCES
 
 I'm using neovim and neorg to take notes
-~ neovim + neorg (I'd like to recommand LazyVim)
-~ maven java
-~ jdk 21
+1. neovim + neorg (I'd like to recommand LazyVim)
+2. maven java
+3. jdk 21
+
+## PROJ VIEW
+- THE NOTES IN THE LECT/ IS THE ONLY THING YOU NEED.
+- lect/ contains the lecture notes until lect 16 (updating)
+- the specific java implementation and code address usually is noted in the lect notes
 
 ## TODO
 
