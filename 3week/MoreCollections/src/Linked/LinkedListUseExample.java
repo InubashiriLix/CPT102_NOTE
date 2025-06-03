@@ -1,6 +1,6 @@
 package Linked;
 
-import Linked.LinkedList_;
+import Linked.LinkedList;
 
 public class LinkedListUseExample<E> {
     private LinkedList<String> linkedList = new LinkedList<String>();

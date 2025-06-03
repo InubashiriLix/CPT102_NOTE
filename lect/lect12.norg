@@ -36,20 +36,20 @@
     - count = 4
 *** Ops
 **** offer(x)
-        @code lang
-        data[count++] = x;
-        @end
+     @code java
+     data[count++] = x;
+     @end
 **** poll()
-        @code java
-        // 取出元素
-        T x = data[0];
-        // 将后面元素前移
-        for (int i = 1; i < count; i++) {
-            data[i - 1] = data[i];
-        }
-        count--;
-        return x;
-        @end
+     @code java
+     // 取出元素
+     T x = data[0];
+     // 将后面元素前移
+     for (int i = 1; i < count; i++) {
+         data[i - 1] = data[i];
+     }
+     count--;
+     return x;
+     @end
 *** time cost
     - offer: O(1)
     - poll:  O(n)

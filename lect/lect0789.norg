@@ -66,6 +66,14 @@
 *** how to deal with Exceptions?
     - throwing exceptions
     - handling (catching ) exceptions
+*** Exception Examples
+    @code java
+    throw new NullPointerException();
+    throw new NoSuchElementException();
+    throw new IOException();
+    throw new UnsupportedOperationException();
+    throw new RuntimeException();
+    @end
 
 ** Dealing with Exceptions
    - the exceptions are throw in an try ... catch can be caught
@@ -108,7 +116,7 @@
    @end
    @code java
    public Object pop()  {
-   Object obj;
+       Object obj;
        if (size == 0) {
            throw new EmptyStackException();
        }
@@ -175,12 +183,12 @@
    - the code is in the 2week/MoreCollections/src/ArrayList
 
 * Abstract Classes
- - problem:
-   there are too many method in the list needed to be defined in the ArrayList, and many are complicated
-   and many could be defined in terms of a few basic methods (like  size, add, remove, set), which complicated method can use them
+  - problem:
+    there are too many method in the list needed to be defined in the ArrayList, and many are complicated
+    and many could be defined in terms of a few basic methods (like  size, add, remove, set), which complicated method can use them
   @code java
   public boolean addAll(Collection <E> other) {
-  for (T item : other) {
+      for (T item : other) {
           add(item);
       }
   }
@@ -194,9 +202,9 @@
 **** Absstract classes:
      - implements interface
      - defines some methods
-     - leaves other methods "abstract"
-    - example: 
-     @code 
+     - leaves basic methods "abstract"
+     - example: 
+     @code java
      AbastractList<E> {
      implements List<E>
      define array of <E>
@@ -210,7 +218,7 @@
      - define data structures
      - defines basic method
      - defines constructors
-    @code 
+     @code java
      ArrayList<E>
      {
      extends AbstractList
@@ -223,79 +231,79 @@
     see 2week/MoreCollections/src/ArrayList/AbstractArrayList.java
 
 ** ArrayList extends AbsArrayList
-    @code java
-    package ArrayList;
+   @code java
+   package ArrayList;
 
-    public class ArrayListAbs<T> extends AbsArrayList<T> {
+   public class ArrayListAbs<T> extends AbsArrayList<T> {
 
-        private T[] data;
-        private int count;
-        private static int INITIAL_CAPACITY = 16;
-        private int sizeArray = INITIAL_CAPACITY;
+       private T[] data;
+       private int count;
+       private static int INITIAL_CAPACITY = 16;
+       private int sizeArray = INITIAL_CAPACITY;
 
-        public ArrayListAbs() {
-            // @SuppressWarnings("unchecked")
-            this.data = (T[]) new Object[INITIAL_CAPACITY];
-        }
+       public ArrayListAbs() {
+           // @SuppressWarnings("unchecked")
+           this.data = (T[]) new Object[INITIAL_CAPACITY];
+       }
 
-        @Override
-        public int size() {
-            return count;
-        }
+       @Override
+       public int size() {
+           return count;
+       }
 
-        @Override
-        public T get(int index) {
-            if (index < 0 || index >= count) {
-                throw new IndexOutOfBoundsException("index out of boundary");
-            }
-            return data[index];
-        }
+       @Override
+       public T get(int index) {
+           if (index < 0 || index >= count) {
+               throw new IndexOutOfBoundsException("index out of boundary");
+           }
+           return data[index];
+       }
 
-        @Override
-        public T set(int index, T element) {
-            if (index < 0 || index >= count) {
-                throw new IndexOutOfBoundsException("index out of boundary");
-            }
-            data[index] = element;
-            return data[index];
-        }
+       @Override
+       public T set(int index, T element) {
+           if (index < 0 || index >= count) {
+               throw new IndexOutOfBoundsException("index out of boundary");
+           }
+           data[index] = element;
+           return data[index];
+       }
 
-        @Override
-        public void add(int index, T element) {
-            if (count > sizeArray) {
-                throw new IndexOutOfBoundsException("detected data boundary");
-            }
-            if (count == sizeArray) {
-                sizeArray = sizeArray + (sizeArray >> 1);
-                T[] newArray = (T[]) new Object[sizeArray];
-                System.arraycopy(data, 0, newArray, 0, count);
-                data = newArray;
-            }
+       @Override
+       public void add(int index, T element) {
+           if (count > sizeArray) {
+               throw new IndexOutOfBoundsException("detected data boundary");
+           }
+           if (count == sizeArray) {
+               sizeArray = sizeArray + (sizeArray >> 1);
+               T[] newArray = (T[]) new Object[sizeArray];
+               System.arraycopy(data, 0, newArray, 0, count);
+               data = newArray;
+           }
 
-            if (index < count) {
-                System.arraycopy(data, index, data, index + 1, count - index);
-            }
+           if (index < count) {
+               System.arraycopy(data, index, data, index + 1, count - index);
+           }
 
-            data[index] = element;
-            count++;
-        }
+           data[index] = element;
+           count++;
+       }
 
-        @Override
-        public T remove(int index) {
-            if (index < 0 || index >= count) {
-                throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + count);
-            }
-            T removedElement = data[index];
+       @Override
+       public T remove(int index) {
+           if (index < 0 || index >= count) {
+               throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + count);
+           }
+           T removedElement = data[index];
 
-            int numMoved = count - index - 1;
-            if (numMoved > 0) {
-                System.arraycopy(data, index + 1, data, index, numMoved);
-            }
-            data[--count] = null;
+           int numMoved = count - index - 1;
+           if (numMoved > 0) {
+               System.arraycopy(data, index + 1, data, index, numMoved);
+           }
+           data[--count] = null;
 
-            return removedElement;
-        }
-    }
+           return removedElement;
+       }
+   }
    @end
 
 * Implementing ArrayList
@@ -341,25 +349,25 @@
         @Override
         public void remove() {
             list.remove(list.get(currentIdx));
-                }
-            }
-            return false;
+            canRemove = false;
         }
-        @end
+    }
+    @end
+
     - add(e) best: O(1), bad O(n)
       1. if the size is in the limit of max length, then the only ops is to add the new element to the end of the elements
       but when the size is out of the limit, we need to copy the old array into the new array, which is the data in the next step
-        @code java
-        public boolean add(T value) {
-            if (size == elements.length) {
-                Object[] newArray = new Object[elements.length * 2];
-                System.arraycopy(elements, 0, newArray, 0, elements.length);
-                this.elements = newArray;
-            }
-            elements[size++] = value;
-            return true;
+    @code java
+    public boolean add(T value) {
+        if (size == elements.length) {
+            Object[] newArray = new Object[elements.length * 2];
+            System.arraycopy(elements, 0, newArray, 0, elements.length);
+            this.elements = newArray;
         }
-        @end
+        elements[size++] = value;
+        return true;
+    }
+    @end
 
 *** How expensive is it to increase the size
 *** How do we increase the size
@@ -378,30 +386,27 @@
      - the add need O(1) per time, but if the elements grow, we need O(n)
 
 * ArrayList 迭代器 Q&A
-
 ** remove() 是否强制实现？ (T or F)
-- 答案：False
-- 说明：Iterator 接口中的 remove() 方法是可选的，不支持时应抛出 UnsupportedOperationException。
+   - 答案：False
+   - 说明：Iterator 接口中的 remove() 方法是可选的，不支持时应抛出 UnsupportedOperationException。
 
 ** ArrayList 如何利用泛型参数？
-- 编译时保证类型安全：add(T)、get() 等方法签名带有泛型 T
-- 运行时通过 Object[] elementData 存储所有元素，返回时强制转换为 T（类型擦除）
+   - 编译时保证类型安全：add(T)、get() 等方法签名带有泛型 T
+   - 运行时通过 Object\[] elementData 存储所有元素，返回时强制转换为 T（类型擦除）
 
 ** ArrayList.remove() 删除哪个元素？
-- remove(int index)：删除指定下标的元素
-- remove(Object o)：删除首个匹配的元素
-- Iterator.remove()：删除上一次 next() 返回的元素
+   - remove(int index)：删除指定下标的元素
+   - remove(Object o)：删除首个匹配的元素
+   - Iterator.remove()：删除上一次 next() 返回的元素
 
 ** Iterator.next() 返回前做了哪些检查？
-- 检查 cursor < size()，否则抛出 NoSuchElementException
-- 检查 expectedModCount 与 modCount 是否一致，否则抛出 ConcurrentModificationException （fail-fast 机制）
+   - 检查 cursor < size()，否则抛出 NoSuchElementException
+   - 检查 expectedModCount 与 modCount 是否一致，否则抛出 ConcurrentModificationException （fail-fast 机制）
 
 ** Iterator.remove() 如何保证每次 next() 只能删除一个元素？
-- 维护 lastRet 变量：初始为 -1；next() 设置 lastRet = cursor - 1
-- remove() 必须 lastRet >= 0，并在删除后将 lastRet 设回 -1，防止重复调用
+   - 维护 lastRet 变量：初始为 -1；next() 设置 lastRet = cursor - 1
+   - remove() 必须 lastRet >= 0，并在删除后将 lastRet 设回 -1，防止重复调用
 
 ** 多个 Iterator 并发遍历同一 ArrayList 会发生什么？
-- 抛出 ConcurrentModificationException：迭代器检测到结构修改即失败快速退出
-- 数据不一致：若捕获或绕过 CME，可能出现元素跳过、重复或索引错乱等问题
-
-
+   - 抛出 ConcurrentModificationException：迭代器检测到结构修改即失败快速退出
+   - 数据不一致：若捕获或绕过 CME，可能出现元素跳过、重复或索引错乱等问题

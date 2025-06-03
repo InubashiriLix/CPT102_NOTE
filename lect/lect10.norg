@@ -86,6 +86,8 @@
       - each time an element is added, the cost doubles
 ***** O(N!)
       - each time an element is added,  the cost multiplies by the number of elements (n)
+***** O(N ^ N)
+      - bigger than O(N!)
 **** Hierarchy of functions
      - O(1) < O(log N) < O(N) < O(N log N) < O(N ^ 2) < O(N ^ 3) < O(2 ^ N) < O(N!)
      - we can insert the different function into functions to apply hierarchy
@@ -113,9 +115,9 @@
       for each loop
       - comparison: i < count
       - 1 addition: i++
-      - 1 data retrieval: data[i]
+      - 1 data retrieval: data\[i]
       - 1 substraction i - 1
-      - 1 memory store: data[i - 1] = data[i]
+      - 1 memory store: data\[i - 1] = data\[i]
 
 **** What's step: Pragmatics
 ***** Count the most expensive actions:
@@ -136,34 +138,37 @@
 
 ** remove:
 *** best, worse, average
-**** best: O(n - 1) -> bad O(n)
-   1. use the index to delete the element first, then move (n - 1) element to the front element
-   @code java
-   public void remove(int index) {
-       if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
-       for (int i = index; i < size - 1; i++) {
-           elements[i] = elements[i + 1];
-       }
-       elements[size - 1] = null;
-       size --;
-   }
-   @end
-   2. use the object equal to find the element (i), than delete it, then move(n - i) => n
-   @code java
-   public boolean remove(Object o) {
-       for (int i = 0; i < size; i++) {
-           if (0 == null? elements[i] == null : o.equals(elements[i])) {
-               int numMoved = size - i - 1;
-               if (numMoved > 0) {
-                   System.arraycopy(elements, i + 1, elements, i, numMoved);
-               }
-               elements[--size] = null;
-               return true;
-           }
-       }
-       return false;
-   }
-   @end
+**** best for unknow index: O(n)
+**** best for known index: O(1) -> bad O(n)
+***** Known Index
+      1. use the index to delete the element first, then move (n - 1) element to the front element
+      @code java
+      public void remove(int index) {
+          if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
+          for (int i = index; i < size - 1; i++) {
+              elements[i] = elements[i + 1];
+          }
+          elements[size - 1] = null;
+          size --;
+      }
+      @end
+***** Unknown Index
+      2. use the object equal to find the element (i), than delete it, then move(n - i) => n
+      @code java
+      public boolean remove(Object o) {
+          for (int i = 0; i < size; i++) {
+              if (0 == null? elements[i] == null : o.equals(elements[i])) {
+                  int numMoved = size - i - 1;
+                  if (numMoved > 0) {
+                      System.arraycopy(elements, i + 1, elements, i, numMoved);
+                  }
+                  elements[--size] = null;
+                  return true;
+              }
+          }
+          return false;
+      }
+      @end
      
 ** ensureCapcity()
    @code java
@@ -201,7 +206,7 @@
     3. add O(1), O(n)
 
 * Execrices
-  - O(log(n)) < O(sqrt(n))  (T or F) => T
+  - O(log(n)) < O(sqrt(n, 2))  (T or F) => T
   - O(n^n) < O(n!) (T or F) => F
   - O(2^n) < O(n^n) (T or F) => T
   - When analysing the cost of an algorithm, loop usually is the 

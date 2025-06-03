@@ -33,5 +33,4 @@ public class IteratorArrayList<T> implements Iterator<T> {
         list.remove(list.get(currentIdx));
         canRemove = false;
     }
-
 }

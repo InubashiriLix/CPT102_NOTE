@@ -34,6 +34,7 @@
    @end
 
 * Fibonacci
+  note: it can be found in 3week folder fibonacci/
   - base case:
     fib(1) = 1;
     fib(0) = 0;
@@ -41,7 +42,7 @@
     fib(n) =  fib(n - 1) + fib(n - 2);
   @code cpp
   int fib(int cnt) {
-  if (cnt == 1) return 1;
+      if (cnt == 1) return 1;
       if (cnt == 0) return 0;
       return fib(cnt - 1) + fib(cnt - 2);
   }

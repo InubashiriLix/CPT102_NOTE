@@ -13,6 +13,8 @@ import Linked.UsingExample;
 import Queue.LinkedQueue;
 
 import ArraySet.ArraySetExample;
+import reviewComparator.Person;
+import reviewComparator.PersonExample;
 
 public class Main {
     public static void main(String[] args) {
@@ -30,6 +32,7 @@ public class Main {
         // while (!q.isEmpty()) {
         // System.out.println(q.poll());
         // }
-        ArraySetExample asE = new ArraySetExample();
+        // ArraySetExample asE = new ArraySetExample();
+        PersonExample pe = new PersonExample();
     }
 }

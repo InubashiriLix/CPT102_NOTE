@@ -5,7 +5,7 @@
   - get(index), set(index, item);
     1. loop to index's node, then get or set value
   - add(index, item), remove(index)
-    1. deal with spechail case of index == 0
+    1. deal with special case of index == 0
     2. loop along list to node one before index th node, then add or remove 
     3. check if go past end of list
   - remove(item)
@@ -149,7 +149,7 @@
    }
    @end
 
-* A collectino class - Linked List
+* A collection class - Linked List
 ** Implementation (including the methods)
    @code java
    package Linked;
